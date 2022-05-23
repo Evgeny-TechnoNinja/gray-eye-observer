@@ -1,4 +1,4 @@
-from loader import BOT as bot   # noqa
+from loader import BOT as bot, KEYBOARD_MAIN_MENU as MAIN_MENU   # noqa
 from config import BOT_ADMIN, DIALOGUE    # noqa
 
 
@@ -9,4 +9,5 @@ def start(message):
         bot.send_message(message.from_user.id, text)
     else:
         text = DIALOGUE["hello_admin"]
-        bot.send_message(message.from_user.id, text)
+        bot.send_message(message.from_user.id, text, reply_markup=MAIN_MENU)
+
