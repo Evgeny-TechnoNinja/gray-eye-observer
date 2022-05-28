@@ -8,6 +8,8 @@ def start(message):
         text = DIALOGUE["no_admin"]
         bot.send_message(message.from_user.id, text)
     else:
+        text = DIALOGUE["intro"]
+        bot.send_message(message.from_user.id, text)
         text = DIALOGUE["hello_admin"]
         bot.send_message(message.from_user.id, text, reply_markup=MAIN_MENU)
 
