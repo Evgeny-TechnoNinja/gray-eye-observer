@@ -13,6 +13,7 @@ url = ""
 def callback_inline_keyboard(call):
     global spin, watch, url
     FILTER, OBSERVER, STOP = list(BLANK_BUTTONS.keys())
+    manager = Manager(observer, TASK_NAME, INTERVAL)
     if call.data == FILTER:
         def set_url(message):
             global url
@@ -32,8 +33,6 @@ def callback_inline_keyboard(call):
         else:
             text = DIALOGUE["watch_process"]
             bot.send_message(call.from_user.id, text, reply_markup=MAIN_MENU)
-    # TODO: Continue, observer for url
-    manager = Manager(observer, TASK_NAME, INTERVAL)
     if call.data == OBSERVER:
         if not url:
             text = DIALOGUE["no_filter"]
@@ -48,11 +47,12 @@ def callback_inline_keyboard(call):
                 print("watch", watch)
                 text = DIALOGUE["watch_on"]
                 bot.send_message(call.from_user.id, text)
+                manager.add_url(url)
                 manager.create_schedule()
                 if not spin:
                     spin = True
                 while spin:
-                    print("work ...", url)
+                    print("work ...")
                     manager.run()
     if call.data == STOP:
         if not url:
