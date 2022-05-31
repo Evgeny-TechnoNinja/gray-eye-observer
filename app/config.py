@@ -13,6 +13,11 @@ INTERVAL = 1  # min
 TASK_NAME = "observer"
 API_URL = "https://api-crypto.letmespeak.org/api/escrow"
 MARKET_URL = "https://market.letmespeak.org"
+PROXIES = os.getenv("PROXIES").replace(" ", "").split(",")  # type: ignore
+PROXY_LOGIN = os.getenv("PROXY_LOGIN")
+PROXY_PASSWORD = os.getenv("PROXY_PASSWORD")
+PROXY_TEST_URL = "http://icanhazip.com/"
+
 
 DIALOGUE = {
     "intro": f"Следим за NFT персонажами на {MARKET_URL}",
@@ -25,5 +30,6 @@ DIALOGUE = {
     "url_fail": "Что-то не так с URL",
     "watch_on": "Начинаю наблюдение",
     "watch_off": "Наблюдение остановлено",
-    "watch_process": "Наблюдение уже идет, сначало остановите его"
+    "watch_process": "Наблюдение уже идет, сначало остановите его",
+    "proxy_no_data": "Проверти данные для прокси",
 }
