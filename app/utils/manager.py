@@ -9,13 +9,14 @@ class Manager:
     """
     __url = ""
 
-    def __init__(self, func, name, interval):
+    def __init__(self, func, name, interval, messages):
         self.func = func
         self.name = name
         self.interval = interval
+        self.messages = messages
 
     def __create_threading(self, job_func):
-        job_thread = threading.Thread(target=job_func, args=(self.__url,))
+        job_thread = threading.Thread(target=job_func, args=(self.__url, self.messages))
         job_thread.name = f"thread_{self.name}"
         job_thread.start()
 
